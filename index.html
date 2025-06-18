@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Allfit - AI-powered personalized wellness coaching with fitness tracking, sleep optimization, and nutrition planning.">
+    <title>Allfit | AI-Powered Wellness Coaching</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C63FF; /* Purple accent */
+            --secondary: #4D8AF0; /* Blue accent */
+            --tertiary: #FF6584; /* Pink accent */
+            --dark: #121212; /* Dark background */
+            --darker: #0A0A0A; /* Even darker elements */
+            --light: #FFFFFF; /* White text */
+            --gray: #1E1E1E; /* Card backgrounds */
+            --light-gray: #2A2A2A; /* Lighter elements */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--light);
+            margin-left: 5px;
+        }
+        
+        .logo .dot {
+            color: var(--tertiary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at top, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+        }
+        
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--light), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: var(--gray);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--light-gray);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .app-mockup {
+            max-width: 280px;
+            margin: 0 auto;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .app-mockup img {
+            width: 100%;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: rotateY(-10deg) rotateX(5deg);
+            transition: transform 0.5s;
+        }
+        
+        .app-mockup:hover img {
+            transform: rotateY(0) rotateX(0);
+        }
+        
+        /* Features Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-title p {
+            font-size: clamp(16px, 2vw, 18px);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .feature-card {
+            background-color: var(--gray);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(108, 99, 255, 0.2);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: var(--light);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            opacity: 0.8;
+            font-size: 15px;
+        }
+        
+        /* How It Works */
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            color: var(--light);
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .step h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .step p {
+            opacity: 0.8;
+            font-size: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--gray);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(108, 99, 255, 0.2);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            opacity: 0.1;
+            line-height: 1;
+            font-family: serif;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .author-info h4 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        /* Corporate CTA */
+        .corporate-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 80px 40px;
+            text-align: center;
+            border-radius: 12px;
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .corporate-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .corporate-cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .corporate-cta h2 {
+            font-size: clamp(30px, 4vw, 42px);
+            margin-bottom: 20px;
+        }
+        
+        .corporate-cta p {
+            font-size: clamp(16px, 2vw, 18px);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .btn-light {
+            background-color: var(--light);
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-light:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: var(--darker);
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .close-modal:hover {
+            opacity: 1;
+        }
+        
+        /* Blog Section */
+        .blog-section {
+            padding: 100px 0;
+            background-color: var(--darker);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 25px;
+        }
+        
+        .blog-date {
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .blog-excerpt {
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--secondary);
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Blog Article Pages */
+        .blog-article {
+            padding: 120px 0 80px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .blog-article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .blog-article-date {
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .blog-article-title {
+            font-size: clamp(28px, 4vw, 36px);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .blog-article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .blog-article-content {
+            line-height: 1.8;
+        }
+        
+        .blog-article-content p {
+            margin-bottom: 20px;
+        }
+        
+        .blog-article-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: var(--primary);
+        }
+        
+        .blog-article-content h3 {
+            font-size: 20px;
+            margin: 25px 0 15px;
+        }
+        
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+        
+        .back-to-blog:hover {
+            color: var(--secondary);
+        }
+        
+        .back-to-blog i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .back-to-blog:hover i {
+            transform: translateX(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--gray);
+            border-radius: 8px;
+            color: var(--light);
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        /* Formspree Waitlist Form */
+        .waitlist-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--gray);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: none;
+            background-color: var(--darker);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary);
+            background-color: var(--light-gray);
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--primary);
+            color: var(--light);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-submit:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .form-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-message.success {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            display: block;
+        }
+        
+        .form-message.error {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+            display: block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .corporate-cta {
+                padding: 60px 20px;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+            }
+            
+            .blog-section {
+                padding: 80px 0;
+            }
+            
+            .blog-article-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .blog-article-image {
+                height: 250px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Allfit<span class="dot">.</span><span>tech</span></a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#blog">Blog</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#corporate">For Teams</a>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate-fade">AI-Powered Wellness. Designed For You.</h1>
+            <p class="animate-fade delay-1">Your personal AI coach for fitness, sleep, nutrition, and motivation. Achieve your wellness goals with technology that understands you.</p>
+            <div class="cta-buttons animate-fade delay-2">
+                <a href="#" class="btn btn-primary" id="downloadBtn">
+                    <i class="fab fa-apple" style="margin-right: 8px;"></i> Download on App Store
+                </a>
+                <a href="#" class="btn btn-secondary">Try on Web</a>
+            </div>
+            <div class="app-mockup animate-fade delay-3">
+                <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Allfit mobile app showing health and wellness tracking">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Complete Wellness Companion</h2>
+                <p>Allfit combines cutting-edge AI with proven wellness strategies to deliver personalized guidance.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Wellness Coach</h3>
+                    <p>24/7 personal trainer that learns your preferences and adapts to your progress in real-time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3>Sleep Optimization</h3>
+                    <p>Smart sleep analysis with personalized recommendations to improve sleep quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Nutrition Planning</h3>
+                    <p>Custom meal plans tailored to your dietary needs, preferences, and fitness goals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Smart Insights</h3>
+                    <p>Data-driven analysis of your habits with actionable improvement suggestions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Circles</h3>
+                    <p>Connect with friends and like-minded people for motivation and accountability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Allfit TMi™</h3>
+                    <p>Total Movement Intelligence for period, pregnancy, and PCOS tracking and guidance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Mental Fitness</h3>
+                    <p>Meditation, stress management, and cognitive exercises tailored to your needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Biometric Sync</h3>
+                    <p>Integrates with wearables for comprehensive health data analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Adaptive Scheduling</h3>
+                    <p>Workouts and plans that automatically adjust to your calendar and energy levels.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Goal Tracking</h3>
+                    <p>Visual progress tracking with milestones and achievements to keep you motivated.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Hydration Coach</h3>
+                    <p>Personalized hydration reminders based on your activity and environment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h3>Recovery Advisor</h3>
+                    <p>Optimal recovery plans to prevent injury and maximize performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Allfit Works</h2>
+                <p>Getting started with your personalized wellness journey is simple.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download the App</h3>
+                    <p>Available on iOS and web. Setup takes less than 2 minutes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Set Your Goals</h3>
+                    <p>Tell us about your wellness objectives and preferences.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Let AI Coach You</h3>
+                    <p>Receive daily personalized guidance and track your progress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog-section" id="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>Wellness Insights</h2>
+                <p>Discover the latest health tips, success stories, and Allfit updates.</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Woman tracking health metrics" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-date">June 15, 2023</span>
+                        <h3 class="blog-title">Introducing Allfit TMi: Total Movement Intelligence for Smarter Health Tracking</h3>
+                        <p class="blog-excerpt">Discover how Allfit TMi is transforming fitness and health by intelligently tracking periods, pregnancy, PCOS, stress, and full-body performance—available for both men and women.</p>
+                        <a href="#tmi-article" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sleep tracking" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-date">May 28, 2023</span>
+                        <h3 class="blog-title">The Science of Sleep: How Allfit's AI Optimizes Your Rest</h3>
+                        <p class="blog-excerpt">Learn how our sleep tracking technology analyzes your patterns and provides personalized recommendations for better rest and recovery.</p>
+                        <a href="#sleep-article" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nutrition planning" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-date">May 10, 2023</span>
+                        <h3 class="blog-title">Personalized Nutrition: How AI Creates Your Perfect Meal Plan</h3>
+                        <p class="blog-excerpt">Discover how Allfit's nutrition algorithms adapt to your dietary preferences, allergies, and fitness goals for optimal results.</p>
+                        <a href="#nutrition-article" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Fitness community" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-date">April 22, 2023</span>
+                        <h3 class="blog-title">Building Wellness Communities: The Power of Social Motivation</h3>
+                        <p class="blog-excerpt">How connecting with others through Allfit can boost your motivation and help you achieve your goals faster.</p>
+                        <a href="#community-article" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mental health" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-date">April 5, 2023</span>
+                        <h3 class="blog-title">Beyond Physical Fitness: Allfit's Approach to Mental Wellbeing</h3>
+                        <p class="blog-excerpt">Explore how our mental fitness programs help reduce stress, improve focus, and enhance overall wellbeing.</p>
+                        <a href="#mental-article" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Articles (Hidden by default, shown when clicking Read More) -->
+    <div id="tmi-article" class="blog-article" style="display: none;">
+        <div class="container">
+            <div class="blog-article-header">
+                <span class="blog-article-date">June 15, 2023</span>
+                <h1 class="blog-article-title">Introducing Allfit TMi: Total Movement Intelligence for Smarter Health Tracking</h1>
+            </div>
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Woman tracking health metrics" class="blog-article-image">
+            <div class="blog-article-content">
+                <h2>What is Allfit TMi?</h2>
+                <p>Allfit TMi (Total Movement Intelligence) is a next-generation feature inside the Allfit ecosystem that blends physical, hormonal, and mental performance data to deliver intelligent health tracking for everyone. It's not just another period tracker or step counter. It's a full-on AI-powered wellness companion that adapts to your body and lifestyle.</p>
+                <p>Whether you're managing your menstrual cycle, preparing for pregnancy, keeping an eye on potential PCOS symptoms, tracking stress, or optimizing your fitness rhythm—TMi is built for you.</p>
+                
+                <h2>Why "Total Movement Intelligence" Matters</h2>
+                <p>Traditional health apps focus on just one aspect: steps, heart rate, sleep, or periods. But your health isn't one-dimensional—neither should your tracker be. TMi uses AI to recognize patterns across movement, mood, energy, and hormonal signals and provides actionable feedback in real time.</p>
+                <p>Total Movement Intelligence means understanding:</p>
+                <ul>
+                    <li>How your body responds to different life phases (menstrual cycles, stress, fatigue, rest)</li>
+                    <li>When you're most vulnerable to burnout, dehydration, or hormonal dips</li>
+                    <li>How your unique lifestyle influences sleep, productivity, and energy</li>
+                </ul>
+                
+                <h2>Core Features of Allfit TMi (For All Genders)</h2>
+                <p><strong>✅ Smart Period & Ovulation Tracking</strong><br>
+                For those who menstruate, TMi brings advanced tracking with predictive alerts, lifestyle recommendations, and early PCOS detection cues.</p>
+                
+                <p><strong>✅ Pregnancy Planning & Tracking</strong><br>
+                Whether you're trying to conceive or already expecting, TMi offers a deeply personalized assistant that evolves with each trimester.</p>
+                
+                <p><strong>✅ PCOS Insights</strong><br>
+                TMi doesn't just log data—it interprets it. It notices long cycles, irregular bleeding, hormonal symptoms, and suggests you consult a professional when red flags appear.</p>
+                
+                <p><strong>✅ Male Cycle & Hormonal Pattern Monitoring</strong><br>
+                Men go through hormonal fluctuations too—TMi tracks testosterone-linked energy dips, stress cycles, and even sexual health insights.</p>
+                
+                <p><strong>✅ Stress & Cortisol Rhythm Alerts</strong><br>
+                AI detects unusual sleep, heart rate, fatigue, or mood dips and nudges you to hydrate, rest, or adjust your workout intensity.</p>
+                
+                <p><strong>✅ Movement-Performance Loop</strong><br>
+                Your daily movement is measured against energy levels, emotional state, hydration, and sleep quality. You get suggestions like, "Today's a good day for power training" or "You're in a recovery zone—try yoga."</p>
+                
+                <h2>Built With Privacy and Cultural Intelligence</h2>
+                <p>Allfit TMi was designed with African, Asian, and global cultural sensitivities in mind. Whether your calendar follows a Western week, lunar month, or cultural cycle, TMi adapts.</p>
+                <p>And yes—your data stays private. With encrypted storage and opt-in data sharing only, TMi makes sure your health belongs to you.</p>
+                
+                <h2>What's Next for TMi?</h2>
+                <ul>
+                    <li>Voice Input & Chat Guidance: Talk to your AI assistant like it's your wellness coach.</li>
+                    <li>Wearable Integration: Sync with Allfit Bands and 3rd party trackers.</li>
+                    <li>Custom Alerts for Men & Women: Different body types, same intelligence core.</li>
+                </ul>
+                
+                <h2>Final Thoughts</h2>
+                <p>Health isn't one-size-fits-all. Whether you bleed, bulk, break down, or bounce back—Allfit TMi is for your rhythm. It's a system built on respect for the body's natural movements, enhanced by the sharpness of AI.</p>
+                <p>Ready to experience intelligent wellness? Download the latest version of Allfit and activate TMi today.</p>
+                <p>Want us to send you personalized wellness reports? Sign up for our Allfit TMi newsletter for free exclusive tips and early feature access.</p>
+            </div>
+            <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        </div>
+    </div>
+
+    <div id="sleep-article" class="blog-article" style="display: none;">
+        <div class="container">
+            <div class="blog-article-header">
+                <span class="blog-article-date">May 28, 2023</span>
+                <h1 class="blog-article-title">The Science of Sleep: How Allfit's AI Optimizes Your Rest</h1>
+            </div>
+            <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sleep tracking" class="blog-article-image">
+            <div class="blog-article-content">
+                <h2>Understanding Sleep Cycles</h2>
+                <p>Sleep isn't just about quantity—it's about quality. Our AI analyzes your sleep patterns across four key stages: light sleep, deep sleep, REM sleep, and awake periods. By understanding your unique sleep architecture, we can provide personalized recommendations to improve your rest.</p>
+                
+                <h2>How Allfit's Sleep Tracking Works</h2>
+                <p>Using advanced algorithms and motion detection (even without wearables), Allfit tracks:</p>
+                <ul>
+                    <li>Time to fall asleep</li>
+                    <li>Sleep duration and efficiency</li>
+                    <li>Wake-up patterns</li>
+                    <li>Sleep consistency</li>
+                    <li>Correlation with daily activities</li>
+                </ul>
+                
+                <h2>Personalized Sleep Recommendations</h2>
+                <p>Based on your data, Allfit might suggest:</p>
+                <ul>
+                    <li>Ideal bedtime based on your circadian rhythm</li>
+                    <li>Wind-down routines tailored to your habits</li>
+                    <li>Optimal exercise times that won't disrupt sleep</li>
+                    <li>Dietary adjustments to improve sleep quality</li>
+                </ul>
+                
+                <h2>Case Study: Improving Sleep Efficiency</h2>
+                <p>One user increased their sleep efficiency from 78% to 89% in just three weeks by following Allfit's recommendations to adjust their bedtime routine and caffeine intake timing.</p>
+                
+                <h2>Try It Yourself</h2>
+                <p>Start tracking your sleep tonight and receive your first personalized recommendations tomorrow morning!</p>
+            </div>
+            <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        </div>
+    </div>
+
+    <div id="nutrition-article" class="blog-article" style="display: none;">
+        <div class="container">
+            <div class="blog-article-header">
+                <span class="blog-article-date">May 10, 2023</span>
+                <h1 class="blog-article-title">Personalized Nutrition: How AI Creates Your Perfect Meal Plan</h1>
+            </div>
+            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nutrition planning" class="blog-article-image">
+            <div class="blog-article-content">
+                <h2>Beyond One-Size-Fits-All Diet Plans</h2>
+                <p>Traditional diet plans often fail because they don't account for individual differences in metabolism, preferences, and lifestyle. Allfit's nutrition AI changes that by creating plans that adapt to you.</p>
+                
+                <h2>How Our Nutrition AI Works</h2>
+                <p>Our system considers:</p>
+                <ul>
+                    <li>Your health goals (weight loss, muscle gain, maintenance)</li>
+                    <li>Dietary restrictions and preferences</li>
+                    <li>Activity levels and workout schedule</li>
+                    <li>Food sensitivities (tracked through your inputs)</li>
+                    <li>Even your cooking skill level and time available</li>
+                </ul>
+                
+                <h2>Dynamic Meal Planning</h2>
+                <p>Your meal plan automatically adjusts based on:</p>
+                <ul>
+                    <li>Weekly schedule changes</li>
+                    <li>Progress toward goals</li>
+                    <li>Seasonal food availability</li>
+                    <li>Your feedback on meals</li>
+                </ul>
+                
+                <h2>Success Story</h2>
+                <p>"I used to hate meal planning because it felt restrictive. Allfit suggests foods I actually enjoy and makes adjustments when I get bored. I've stuck with it for 6 months—a personal record!" - Jessica T.</p>
+            </div>
+            <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        </div>
+    </div>
+
+    <div id="community-article" class="blog-article" style="display: none;">
+        <div class="container">
+            <div class="blog-article-header">
+                <span class="blog-article-date">April 22, 2023</span>
+                <h1 class="blog-article-title">Building Wellness Communities: The Power of Social Motivation</h1>
+            </div>
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Fitness community" class="blog-article-image">
+            <div class="blog-article-content">
+                <h2>The Science Behind Social Fitness</h2>
+                <p>Studies show that people who exercise with others are more likely to stick with their routines and achieve better results. Allfit's community features leverage this psychology to keep you motivated.</p>
+                
+                <h2>Community Features in Allfit</h2>
+                <ul>
+                    <li><strong>Challenge Groups:</strong> Join themed challenges with others who share your goals</li>
+                    <li><strong>Accountability Partners:</strong> Pair up with a buddy for mutual support</li>
+                    <li><strong>Expert-Led Circles:</strong> Learn from nutritionists and trainers in small groups</li>
+                    <li><strong>Celebration Feed:</strong> Share milestones and cheer others on</li>
+                </ul>
+                
+                <h2>Finding Your Tribe</h2>
+                <p>Allfit matches you with communities based on:</p>
+                <ul>
+                    <li>Fitness level and goals</li>
+                    <li>Age group and lifestyle</li>
+                    <li>Geographic location (for local meetups)</li>
+                    <li>Special interests (yoga, running, strength training, etc.)</li>
+                </ul>
+            </div>
+            <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        </div>
+    </div>
+
+    <div id="mental-article" class="blog-article" style="display: none;">
+        <div class="container">
+            <div class="blog-article-header">
+                <span class="blog-article-date">April 5, 2023</span>
+                <h1 class="blog-article-title">Beyond Physical Fitness: Allfit's Approach to Mental Wellbeing</h1>
+            </div>
+            <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mental health" class="blog-article-image">
+            <div class="blog-article-content">
+                <h2>The Mind-Body Connection</h2>
+                <p>True wellness encompasses both physical and mental health. Allfit's mental fitness programs are designed to work in harmony with your physical training for complete wellbeing.</p>
+                
+                <h2>Mental Fitness Features</h2>
+                <ul>
+                    <li><strong>Stress Tracking:</strong> Correlate stress levels with sleep, activity, and nutrition</li>
+                    <li><strong>Guided Meditations:</strong> Personalized by duration, goal, and experience level</li>
+                    <li><strong>Mindful Movement:</strong> Yoga and tai chi routines that adapt to your mood</li>
+                    <li><strong>Cognitive Exercises:</strong> Brain training games that target focus and memory</li>
+                </ul>
+                
+                <h2>How It Works</h2>
+                <p>Based on your inputs and biometric data (when available), Allfit suggests:</p>
+                <ul>
+                    <li>Optimal times for mindfulness practice</li>
+                    <li>Breathing exercises when stress is detected</li>
+                    <li>Adjustments to physical workouts based on mental state</li>
+                </ul>
+            </div>
+            <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Join thousands who have transformed their wellness journey with Allfit.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        Allfit's AI coach understood my fitness level better than any human trainer I've worked with. The personalized workouts have helped me achieve results I never thought possible.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>Fitness Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The sleep optimization feature changed my life. I went from 5 hours of restless sleep to 7-8 hours of quality sleep consistently within 3 weeks of using Allfit.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DJ</div>
+                        <div class="author-info">
+                            <h4>David J.</h4>
+                            <p>Tech Entrepreneur</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        As someone with PCOS, Allfit's TMI tracking has been revolutionary. Finally an app that understands women's health needs throughout our cycles.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AL</div>
+                        <div class="author-info">
+                            <h4>Amanda L.</h4>
+                            <p>Graphic Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Modal -->
+    <div class="modal" id="waitlistModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 style="margin-bottom: 20px; text-align: center;">Join Our Waitlist</h2>
+            <p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">Be the first to access Allfit when we launch. We'll notify you as soon as the app is available for download.</p>
+            <form id="modalWaitlistForm" action="https://formspree.io/f/mzzggenn" method="POST">
+                <div class="form-group">
+                    <label for="modalName">Full Name</label>
+                    <input type="text" id="modalName" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalEmail">Email Address</label>
+                    <input type="email" id="modalEmail" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalInterest">Primary Interest</label>
+                    <select id="modalInterest" name="interest" class="form-control" required>
+                        <option value="">Select an option</option>
+                        <option value="fitness">Fitness Training</option>
+                        <option value="nutrition">Nutrition Planning</option>
+                        <option value="sleep">Sleep Optimization</option>
+                        <option value="tmi">TMI Tracking (Period/Pregnancy/PCOS)</option>
+                        <option value="mental">Mental Fitness</option>
+                        <option value="corporate">Corporate Wellness</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-submit">Join Waitlist</button>
+                <div id="modalFormMessage" class="form-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Corporate CTA -->
+    <section class="section" id="corporate">
+        <div class="container">
+            <div class="corporate-cta">
+                <h2>Bring Allfit to Your Company or School</h2>
+                <p>Boost productivity, reduce stress, and improve overall wellbeing for your team or students with our enterprise wellness solutions.</p>
+                <a href="#" class="btn btn-light">Contact Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section">
+        <div class="container">
+            <div class="waitlist-form">
+                <h3 style="text-align: center; margin-bottom: 20px;">Stay Updated</h3>
+                <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">Subscribe to our newsletter for wellness tips, feature updates, and special offers.</p>
+                <form id="newsletterForm" action="https://formspree.io/f/mzzggenn" method="POST">
+                    <div class="form-group">
+                        <label for="newsletterName">Full Name</label>
+                        <input type="text" id="newsletterName" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsletterEmail">Email Address</label>
+                        <input type="email" id="newsletterEmail" name="email" class="form-control" required>
+                    </div>
+                    <input type="hidden" name="interest" value="newsletter">
+                    <button type="submit" class="form-submit">Subscribe</button>
+                    <div id="newsletterFormMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Allfit</h4>
+                    <p>AI-powered wellness coaching for fitness, sleep, nutrition, and motivation.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#downloadBtn">Download</a></li>
+                        <li><a href="#">Web App</a></li>
+                        <li><a href="#">TMI™ Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 Allfit. All rights reserved. <br> Allfit™ is a product of Inovify – Innovation For You. <br> Contact: <a href="mailto:useallfitapp@gmail.com">useallfitapp@gmail.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Waitlist Modal
+        const downloadBtn = document.getElementById('downloadBtn');
+        const waitlistModal = document.getElementById('waitlistModal');
+        const closeModal = document.querySelector('.close-modal');
+        
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            waitlistModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            waitlistModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === waitlistModal) {
+                waitlistModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Formspree Waitlist Form Handling (Modal)
+        const modalWaitlistForm = document.getElementById('modalWaitlistForm');
+        const modalFormMessage = document.getElementById('modalFormMessage');
+        
+        if (modalWaitlistForm) {
+            modalWaitlistForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(modalWaitlistForm);
+                
+                try {
+                    const response = await fetch(modalWaitlistForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        modalFormMessage.textContent = 'Thank you for joining our waitlist! We\'ll notify you when Allfit is available.';
+                        modalFormMessage.className = 'form-message success';
+                        modalWaitlistForm.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    modalFormMessage.textContent = 'Oops! Something went wrong. Please try again later.';
+                    modalFormMessage.className = 'form-message error';
+                }
+                
+                modalFormMessage.style.display = 'block';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    modalFormMessage.style.display = 'none';
+                }, 5000);
+            });
+        }
+        
+        // Newsletter Form Handling
+        const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterFormMessage = document.getElementById('newsletterFormMessage');
+        
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(newsletterForm);
+                
+                try {
+                    const response = await fetch(newsletterForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        newsletterFormMessage.textContent = 'Thank you for subscribing! You\'ll receive our next newsletter soon.';
+                        newsletterFormMessage.className = 'form-message success';
+                        newsletterForm.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    newsletterFormMessage.textContent = 'Oops! Something went wrong. Please try again later.';
+                    newsletterFormMessage.className = 'form-message error';
+                }
+                
+                newsletterFormMessage.style.display = 'block';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    newsletterFormMessage.style.display = 'none';
+                }, 5000);
+            });
+        }
+        
+        // Blog Article Navigation
+        const blogArticles = document.querySelectorAll('.blog-article');
+        const blogLinks = document.querySelectorAll('.read-more');
+        const backToBlogLinks = document.querySelectorAll('.back-to-blog');
+        const blogSection = document.getElementById('blog');
+        
+        // Show blog article when Read More is clicked
+        blogLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const articleId = link.getAttribute('href');
+                const article = document.querySelector(articleId);
+                
+                // Hide all articles first
+                blogArticles.forEach(art => {
+                    art.style.display = 'none';
+                });
+                
+                // Show the selected article
+                article.style.display = 'block';
+                
+                // Scroll to the article
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Back to Blog functionality
+        backToBlogLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Hide all articles
+                blogArticles.forEach(art => {
+                    art.style.display = 'none';
+                });
+                
+                // Scroll back to blog section
+                window.scrollTo({
+                    top: blogSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add animation class when elements come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .step, .testimonial-card, .blog-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-fade');
+                }
+            });
+        };
+        
+        // Run once on load and then on scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
